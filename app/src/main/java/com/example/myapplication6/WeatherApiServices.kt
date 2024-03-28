@@ -4,6 +4,7 @@ import com.example.myapplication6.DataClass.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+//api
 interface WeatherApiService {
     @GET("archive")
     suspend fun getWeatherData(
