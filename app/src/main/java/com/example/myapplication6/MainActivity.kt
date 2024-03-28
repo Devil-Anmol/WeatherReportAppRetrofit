@@ -1,21 +1,26 @@
 package com.example.myapplication6
 
+import com.example.myapplication6.R.color
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.text.style.BackgroundColorSpan
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.R
 import androidx.compose.runtime.getValue
@@ -56,6 +61,7 @@ import retrofit2.http.Query
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -154,6 +160,7 @@ fun WeatherApp() {
                 l1 = newValue.trim()
                 latitude = l1.toDoubleOrNull() ?: 0.0
             },
+            modifier = Modifier.background(Color(0xdfe2eb)),
             textStyle = MaterialTheme.typography.titleLarge,
             placeholder = { Text("Enter Latitude") }
         )
@@ -164,6 +171,7 @@ fun WeatherApp() {
                 l2 = newValue.trim()
                 longitude = l2.toDoubleOrNull() ?: 0.0
             },
+            modifier = Modifier.background(Color(0xdfe2eb)),
             textStyle = MaterialTheme.typography.titleLarge,
             placeholder = { Text("Enter Longitude") }
         )
@@ -171,9 +179,11 @@ fun WeatherApp() {
         TextField(
             value = date,
             onValueChange = { date = it.trim() },
+            modifier = Modifier.background(Color(0xdfe2eb)),
             label = { Text("Enter date (YYYY-MM-DD)") }
         )
-        Button(onClick = {
+        Button(
+            onClick = {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
             dateFormat.isLenient = false
             try {
@@ -225,7 +235,8 @@ fun WeatherApp() {
                 weatherData.value = null
             }
         }) {
-            Text("Get Weather Data")
+            Text("Get Weather Data",
+                color = Color.White)
         }
         errorMessage?.let {
             Toast.makeText(LocalContext.current, "Error: $it", Toast.LENGTH_SHORT).show()
